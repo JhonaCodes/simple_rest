@@ -1,8 +1,10 @@
 name: simple_rest
-description: A server app using the shelf package and Docker.
-version: 1.0.1
-# repository: https://github.com/my_org/my_repo
+
+description: A Simple library for api rest.
+version: 1.0.2
+repository: https://github.com/JhonaCodes/simple_rest
 homepage: https://jhonacode.com
+
 environment:
   sdk: '>=2.19.6 <3.0.0'
 

@@ -1,13 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import '../bin/src/controller/s_controller.dart';
-import '../bin/src/helpers/s_jwt_implementation.dart';
-import '../bin/src/router/s_router_controller.dart';
-import '../bin/src/server/s_server.dart';
-import '../bin/src/utils/s_enviroment_data.dart';
+import 'package:simple_rest/simple_rest.dart';
 
-import '../bin/src/services/s_http_methods.dart';
 
 /// The [ClientRoute] mixin contains the literal paths for the client routes.
 mixin ClientRoute {
