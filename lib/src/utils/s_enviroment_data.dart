@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:simple_rest/simple_rest.dart';
+
 /// This class is responsible for reading data from the environment file.
 /// We can define our .env file path or use the default one in the library.
 /// Environment variables:
@@ -29,8 +31,17 @@ class SEnviromentData{
   static String get urlDb   => _enviroment['URL_DB'].toString();
 
  static Map<String, String> get _loadEnvFile {
-    final env =  File( path.isEmpty ? ".env" : path);
-    final envContents = env.readAsStringSync();
+
+   String filePath = "../.env";
+
+   File env = File( path.isEmpty ? filePath : path);
+
+   if( !env.existsSync() ){
+     filePath = ".env";
+     env = File( path.isEmpty ? filePath : path);
+   }
+
+   String envContents = env.readAsStringSync();
 
     final envVars = envContents.split('\n');
     final envMap = <String, String>{};
