@@ -10,7 +10,7 @@ class SServer{
   int? port;
 
   /// From this variable we consult the data that is passed as parameters from the request.
-  static late final HttpRequest? Srequest;
+  static late final HttpRequest? sRequest;
 
   /// Imports the ENV configurations to start the server.
   SServer.envConfig(){
@@ -53,9 +53,9 @@ class SServer{
       var server = await HttpServer.bind(ip, port!);
 
       /// Initialize our server by reading the requests from the clients. They will already have all our services registered.
-      server.listen((request) {
-        Srequest = request;
-        router.route(request);
+      server.listen((request) async{
+        sRequest = request;
+        router.route(sRequest!);
       });
 
       Logs.warning(title: "SERVER STATUS", msm: "Server Started on ${server.port}");

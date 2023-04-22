@@ -25,7 +25,7 @@ class ClientController {
 
   /// Handles the request for the 'fiesta' endpoint.
   static void handleFiesta(HttpRequest request) async {
-    var ridr = SServer.Srequest!.uri.queryParameters['id'];
+    var ridr = SServer.sRequest!.uri.queryParameters['id'];
 
     var data = {
       'nombre': 'Mi Casa',
