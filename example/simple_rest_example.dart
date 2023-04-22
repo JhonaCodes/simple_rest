@@ -63,7 +63,7 @@ void main() async {
 
   /// Server config inicialization
   /// [SServer.envConfig], [SServer.customConfig], [SServer.defaultConfig]
-  SServer server = SServer.envConfig();
+  SServer server = SServer.defaultConfig();
 
   /// SImple example how to validate users with JWT
   if (SJwt.verifyUser(

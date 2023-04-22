@@ -29,7 +29,7 @@ class SEnviromentData{
   static String get urlDb   => _enviroment['URL_DB'].toString();
 
  static Map<String, String> get _loadEnvFile {
-    final env =  File( path.isEmpty ? "../.env" : path);
+    final env =  File( path.isEmpty ? ".env" : path);
     final envContents = env.readAsStringSync();
 
     final envVars = envContents.split('\n');
