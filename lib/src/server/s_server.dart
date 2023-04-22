@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:simple_rest/src/controller/s_controller.dart';
+
 import '../router/s_router.dart';
 import '../utils/s_enviroment_data.dart';
 import '../utils/s_logs.dart';
@@ -9,8 +11,7 @@ class SServer{
   InternetAddress? ip;
   int? port;
 
-  /// From this variable we consult the data that is passed as parameters from the request.
-  static late final HttpRequest? sRequest;
+  var service;
 
   /// Imports the ENV configurations to start the server.
   SServer.envConfig(){
@@ -50,17 +51,17 @@ class SServer{
     try {
 
       /// Instantiate our server with a default IP and port.
-      var server = await HttpServer.bind(ip, port!);
+      service = await HttpServer.bind(ip, port!);
 
       /// Initialize our server by reading the requests from the clients. They will already have all our services registered.
-      server.listen((request) async{
-        sRequest = request;
-        router.route(sRequest!);
+      service.listen((request){
+        SController.request = request;
+        router.route(request);
       });
 
-      Logs.warning(title: "SERVER STATUS", msm: "Server Started on ${server.port}");
+      Logs.warning(title: "SERVER STATUS", msm: "Server Started on ${service.port}");
       Logs.p("--------------------------------------");
-      Logs.p("🔥 Server Started on ${server.port} 🔥");
+      Logs.p("🔥 Server Started on ${service.port} 🔥");
 
     } catch (e) {
       Logs.error(title: "SERVER STATUS", msm: "Server error: $e");

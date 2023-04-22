@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../router/s_router.dart';
 import '../router/s_router_controller.dart';
 
@@ -6,6 +8,7 @@ import '../router/s_router_controller.dart';
 class SController{
 
   static final route = SRouter.getInstanceSRouter;
+  static late HttpRequest _request;
 
   /// Esta funcion deberia ser singelston para que se registre en toda la aplicacion y nucna se peirda ele stado de la instancia
   /// Esta funcion se llama desde la funcion [started] de todas las clases controller que creemos
@@ -24,6 +27,11 @@ class SController{
   static Map<String, Function> _toRouterFormat(SRouterController endPoint) => {
       '${endPoint.http}:/${ endPoint.literalPath ?? endPoint.pathList!.join("/")}': endPoint.function
     };
+
+  static set request (HttpRequest request) => _request = request;
+
+  static HttpRequest get request => _request;
+
   }
 
 /// esta clase se usa al finalizar toda la aplicacion donde se pondran con un enum que debe ser.
