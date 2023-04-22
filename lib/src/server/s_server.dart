@@ -49,12 +49,11 @@ class SServer{
     }
 
     try {
-
       /// Instantiate our server with a default IP and port.
       service = await HttpServer.bind(ip, port!);
 
       /// Initialize our server by reading the requests from the clients. They will already have all our services registered.
-      service.listen((request){
+      service.listen((request) {
         SController.request = request;
         router.route(request);
       });
@@ -62,10 +61,15 @@ class SServer{
       Logs.warning(title: "SERVER STATUS", msm: "Server Started on ${service.port}");
       Logs.p("--------------------------------------");
       Logs.p("🔥 Server Started on ${service.port} 🔥");
-
+    } on SocketException catch (e) {
+      Logs.error(title: "SERVER STATUS", msm: "SocketException occurred: $e");
+      Logs.p("SocketException occurred: $e");
+    } on Exception catch (e) {
+      Logs.error(title: "SERVER STATUS", msm: "Exception occurred: $e");
+      Logs.p("Exception occurred: $e");
     } catch (e) {
-      Logs.error(title: "SERVER STATUS", msm: "Server error: $e");
-      Logs.p("Server error: $e");
+      Logs.error(title: "SERVER STATUS", msm: "Unknown error occurred: $e");
+      Logs.p("Unknown error occurred: $e");
     }
   }
 }

@@ -41,25 +41,34 @@ class SRouter{
     Logs.p("🟢REQUEST CLIENT: ${request.method}");
     Logs.p("🟠PATH CLIENT: ${request.uri.path}");
 
-    var callback = getRoute()[methodPath];
+    try{
 
-    if (callback != null) {
+      var callback = getRoute()[methodPath];
 
-      await callback(request);
+      if (callback != null) {
 
-    } else {
+        await callback(request);
 
-      var response = request.response;
-      response.statusCode = HttpStatus.notFound;
+      } else {
 
-      Logs.failure(title: "ERROR", msm: "Status code: ${response.statusCode}");
-      Logs.failure(title: "CLOSE RESPONSE", msm: "Cerrando response");
+        var response = request.response;
+        response.statusCode = HttpStatus.notFound;
 
-      Logs.p("⚠️ ERROR:  ${response.statusCode}");
+        Logs.failure(title: "ERROR", msm: "Status code: ${response.statusCode}");
+        Logs.failure(title: "CLOSE RESPONSE", msm: "Cerrando response");
 
-      await response.close();
+        Logs.p("⚠️ ERROR:  ${response.statusCode}");
 
+        await response.close();
+
+      }
+
+    }catch(e){
+      Logs.p(e.toString());
+      Logs.error(title: "Error", msm: e.toString());
     }
+
+
   }
 
 }

@@ -10,14 +10,14 @@ import '../utils/s_logs.dart';
 /// dentro de la libreria
 class SJwt{
 
-  static String generateJWT({required String mail, String? customSecureKey}){
+  static String generateJWT({required String mail, String? customSecureKey, String? issuer}){
     String token;
 
     final jwt = JWT(
       {
         'mail': mail
       },
-      issuer: 'JhonaCode',
+      issuer: issuer ?? 'JhonaCode',
     );
 
     token = jwt.sign(SecretKey( customSecureKey ?? SEnviromentData.jwtSecretKey), expiresIn: Duration(days: 15));
@@ -30,8 +30,6 @@ class SJwt{
   /// Para una jwt valida reporta fecha de vencimiento, responsable del sistema y el correo del que envia.
   static Map<String, dynamic> verifyUser({required String token, String? customSecureKey}){
 
-
-    {
       try {
 
         JWT.verify(token, SecretKey( customSecureKey ?? SEnviromentData.jwtSecretKey ));
@@ -47,7 +45,6 @@ class SJwt{
         return { "response": false };
 
       }
-    }
     return { "response": true };
 
   }

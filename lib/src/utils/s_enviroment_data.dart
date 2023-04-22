@@ -20,37 +20,45 @@ class SEnviromentData{
 
   static final _enviroment = _loadEnvFile;
 
-  static String get ipServer     => _enviroment['IP_SERVER'].toString();
-  static int get portServer      => int.parse(_enviroment['PORT_SERVER'].toString());
-  static String get jwtSecretKey => _enviroment['JWT_LOCAL_KEY'].toString();
-  static String get urlApi  => _enviroment['URL_API'].toString();
-  static String get apiKey  => _enviroment['API_KEY'].toString();
-  static String get apiAuth => _enviroment['API_AUTH'].toString();
-  static String get userDb  => _enviroment['USER_DB'].toString();
-  static String get passDb  => _enviroment['PASS_DB'].toString();
-  static String get urlDb   => _enviroment['URL_DB'].toString();
+  static String get ipServer => _enviroment['IP_SERVER']?.toString() ?? '0.0.0.0';
+  static int get portServer => int.tryParse(_enviroment['PORT_SERVER']?.toString() ?? '8090') ?? 8090;
+  static String get jwtSecretKey => _enviroment['JWT_LOCAL_KEY']?.toString() ?? '';
+  static String get urlApi => _enviroment['URL_API']?.toString() ?? '';
+  static String get apiKey => _enviroment['API_KEY']?.toString() ?? '';
+  static String get apiAuth => _enviroment['API_AUTH']?.toString() ?? '';
+  static String get userDb => _enviroment['USER_DB']?.toString() ?? '';
+  static String get passDb => _enviroment['PASS_DB']?.toString() ?? '';
+  static String get urlDb => _enviroment['URL_DB']?.toString() ?? '';
 
  static Map<String, String> get _loadEnvFile {
 
    String filePath = "../.env";
+   final envMap = <String, String>{};
+   try{
+     
+       File env = File( path.isEmpty ? filePath : path);
 
-   File env = File( path.isEmpty ? filePath : path);
+       if( !env.existsSync() ){
+         filePath = ".env";
+         env = File( path.isEmpty ? filePath : path);
+       }
 
-   if( !env.existsSync() ){
-     filePath = ".env";
-     env = File( path.isEmpty ? filePath : path);
+       String envContents = env.readAsStringSync();
+
+       final envVars = envContents.split('\n');
+
+       for (final envVar in envVars) {
+         final keyValue = envVar.split('=');
+         if (keyValue.length == 2) {
+           envMap[keyValue[0].trim()] = keyValue[1].trim();
+         }
+       }
+
+   }catch(e){
+     Logs.p("🔥 Error to calling file");
    }
 
-   String envContents = env.readAsStringSync();
 
-    final envVars = envContents.split('\n');
-    final envMap = <String, String>{};
-    for (final envVar in envVars) {
-      final keyValue = envVar.split('=');
-      if (keyValue.length == 2) {
-        envMap[keyValue[0].trim()] = keyValue[1].trim();
-      }
-    }
     return envMap;
   }
 
