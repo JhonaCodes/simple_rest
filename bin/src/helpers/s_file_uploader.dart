@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:convert';
 
 class SFileUploader {
 

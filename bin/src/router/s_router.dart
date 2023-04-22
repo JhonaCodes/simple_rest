@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import '../controller/s_controller.dart';
-import '../utils/logs.dart';
+import '../utils/s_logs.dart';
 
 class SRouter{
 

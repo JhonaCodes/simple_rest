@@ -6,5 +6,4 @@ class SRouterController{
   final Function function;
 
   const SRouterController({required this.http, this.pathList, this.literalPath,required this.function});
-
 }

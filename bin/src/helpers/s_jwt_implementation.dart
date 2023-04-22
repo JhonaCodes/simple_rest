@@ -1,7 +1,7 @@
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 
-import '../utils/enviroment_data.dart';
-import '../utils/logs.dart';
+import '../utils/s_enviroment_data.dart';
+import '../utils/s_logs.dart';
 
 /// Clase para manejo de JWT, generar y  verificar
 /// generar [generateJWT] y verificar [verifyUser]
