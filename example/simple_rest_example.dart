@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:simple_rest/simple_rest.dart';
 
-
+/*
 /// The [ClientRoute] mixin contains the literal paths for the client routes.
 mixin ClientRoute {
   static const String base = 'client';
@@ -14,6 +14,7 @@ mixin ClientRoute {
 /// The [ClientController] class caontains the handlers for the client requests.
 class ClientController {
   /// Handles the request for the 'casa' endpoint.
+
   static void handleCasa(HttpRequest request) async {
     var data = {'nombre': 'Mi Casa', 'direccion': '123 Calle Principal'};
     var jsonString = jsonEncode(data);
@@ -79,3 +80,4 @@ void main() async {
   ]);
 
 }
+*/
