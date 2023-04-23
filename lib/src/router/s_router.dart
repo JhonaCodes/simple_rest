@@ -59,8 +59,9 @@ class SRouter{
 
     }catch(e){
       request.response.headers.contentType = ContentType.json;
-      Logs.error(title: "Error", msm: e.toString());
       request.response.write('{"response": "No operator matches the given name and argument types. You might need to add explicit type casts."}');
+      await request.response.close();
+      Logs.error(title: "Error", msm: e.toString());
     }
 
 
