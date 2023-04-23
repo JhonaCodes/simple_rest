@@ -36,16 +36,20 @@ class SJwt{
 
       } on JWTExpiredError {
 
+        Logs.simpleFailure(title: "JWT", msm: "JWT expired");
+
         return { "response": false };
 
       } on JWTError catch (ex) {
 
-        Logs.error(title: "JWT", msm: ex.message);
+        Logs.simpleError(title: "JWT", msm: ex.message);
 
         return { "response": false };
 
       }
-    return { "response": true };
+
+      Logs.simpleInfo(title: "JWT", msm: "User Validated");
+      return { "response": true };
 
   }
 

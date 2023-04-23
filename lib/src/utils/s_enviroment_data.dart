@@ -55,7 +55,7 @@ class SEnviromentData{
        }
 
    }catch(e){
-     Logs.p("🔥 Error to calling file");
+     Logs.error(title: "NO FILE", msm: "🔥 Error to calling file");
    }
 
 

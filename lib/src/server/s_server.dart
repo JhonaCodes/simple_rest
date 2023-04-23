@@ -33,8 +33,6 @@ class SServer{
   Future<void> started(List<Function> initialization) async {
 
     Logs.info(title: "ROUTES", msm: "Initializing Routes");
-    Logs.p("--------------------------------------");
-    Logs.p("🔃 Initializing Routes");
 
     /// Initialize our singleton so that we can read all the routes that are going to be implemented.
     var router = SRouter.getInstanceSRouter;
@@ -43,8 +41,6 @@ class SServer{
     /// where all the routes will be registered in our singleton that is already initialized.
     for (var fun in initialization) {
       Logs.info(title: "SERVICES", msm: "Initializing Controllers");
-      Logs.p("--------------------------------------");
-      Logs.p("👑 Initializing Controllers");
       fun.call();
     }
 
@@ -58,18 +54,14 @@ class SServer{
         router.route(request);
       });
 
-      Logs.warning(title: "SERVER STATUS", msm: "Server Started on ${service.port}");
-      Logs.p("--------------------------------------");
-      Logs.p("🔥 Server Started on ${service.port} 🔥");
+      Logs.debug(title: "SERVER STATUS", msm: "Server Started on ${service.port}");
+
     } on SocketException catch (e) {
       Logs.error(title: "SERVER STATUS", msm: "SocketException occurred: $e");
-      Logs.p("SocketException occurred: $e");
     } on Exception catch (e) {
       Logs.error(title: "SERVER STATUS", msm: "Exception occurred: $e");
-      Logs.p("Exception occurred: $e");
     } catch (e) {
       Logs.error(title: "SERVER STATUS", msm: "Unknown error occurred: $e");
-      Logs.p("Unknown error occurred: $e");
     }
   }
 }

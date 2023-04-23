@@ -9,7 +9,10 @@ class Logs {
   Logs();
 
   final _logger = Logger(
+    output: ConsoleOutput(),
+    filter: ProductionFilter(),
     printer: PrettyPrinter(
+
       printEmojis: true,
       printTime: false,
       colors: true,
@@ -18,11 +21,13 @@ class Logs {
   );
 
   final _loggerNoStack = Logger(
+    filter: ProductionFilter(),
     printer: PrettyPrinter(methodCount: 0),
   );
 
 
   final _loggerResponse = Logger(
+    filter: ProductionFilter(),
     printer: PrettyPrinter(
       methodCount: 0,
       printTime: true,
@@ -48,10 +53,8 @@ class Logs {
   Logs.responseFailure({required String title, required dynamic msm, StackTrace? stackTrace}){_loggerNoStack.wtf(msm,title,stackTrace);}
   Logs.responseError(  {required String title, required dynamic msm, StackTrace? stackTrace}){_loggerResponse.e(msm,title,stackTrace);}
   Logs.response(       {required String title, required dynamic msm, StackTrace? stackTrace}){_loggerResponse.i(msm,title,stackTrace);}
+  Logs.serverOn(       {required String title, required dynamic msm, StackTrace? stackTrace}){_loggerResponse.d(msm,title,stackTrace);}
 
-  Logs.p(String text){
-    print(text);
-  }
 
 
 }

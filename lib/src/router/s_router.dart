@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:simple_rest/src/utils/s_http_exception_handler.dart';
+
 import '../controller/s_controller.dart';
 import '../utils/s_logs.dart';
 
@@ -22,8 +24,6 @@ class SRouter{
   void setRouter(Map<String, Function> endPoint) {
     _routes.addAll(endPoint);
     Logs.info(title: "PATH ONLINE", msm: _routes.keys.join("\n"));
-    Logs.p("➡️PATH ONLINE ⬇️\n${_routes.keys.join("\n")}");
-    Logs.p("--------------------------------------");
   }
 
   /// Verifica qcual es el llamado que hac el cliente y lo suscribe para ser mostrado
@@ -31,15 +31,10 @@ class SRouter{
   /// llama la funcion desde la clave que contiene el endpoint y el path
   void route(HttpRequest request) async {
 
-    print(request.uri.queryParameters['id']);
-
     var methodPath = '${request.method}:${request.uri.path}';
 
     Logs.debug(title: "REQUEST CLIENT",msm: request.method);
     Logs.debug(title: "PATH CLIENT",msm: request.uri.path);
-
-    Logs.p("🟢REQUEST CLIENT: ${request.method}");
-    Logs.p("🟠PATH CLIENT: ${request.uri.path}");
 
     try{
 
@@ -52,19 +47,17 @@ class SRouter{
       } else {
 
         var response = request.response;
-        response.statusCode = HttpStatus.notFound;
 
-        Logs.failure(title: "ERROR", msm: "Status code: ${response.statusCode}");
-        Logs.failure(title: "CLOSE RESPONSE", msm: "Cerrando response");
+        await HttpExceptionHandler.exceptions(response: request).whenComplete(() async{
+          await response.close();
+          Logs.simpleDebug(title: "RESPONSE ACTION", msm: "Closing response");
+        } );
 
-        Logs.p("⚠️ ERROR:  ${response.statusCode}");
 
-        await response.close();
 
       }
 
     }catch(e){
-      Logs.p(e.toString());
       Logs.error(title: "Error", msm: e.toString());
     }
 

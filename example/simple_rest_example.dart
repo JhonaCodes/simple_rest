@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:logger/logger.dart';
 import 'package:simple_rest/simple_rest.dart';
 
-/*
+
 /// The [ClientRoute] mixin contains the literal paths for the client routes.
 mixin ClientRoute {
   static const String base = 'client';
@@ -26,7 +27,7 @@ class ClientController {
 
   /// Handles the request for the 'fiesta' endpoint.
   static void handleFiesta(HttpRequest request) async {
-    var ridr = SServer.sRequest!.uri.queryParameters['id'];
+    var ridr = SController.request.uri.queryParameters['id'];
 
     var data = {
       'nombre': 'Mi Casa',
@@ -80,4 +81,3 @@ void main() async {
   ]);
 
 }
-*/

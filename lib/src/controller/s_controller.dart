@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:simple_rest/simple_rest.dart';
+
 import '../router/s_router.dart';
 import '../router/s_router_controller.dart';
 
@@ -15,8 +17,14 @@ class SController{
   static Future<void> registerEndpoints({required List<SRouterController> endPoints}) async{
 
     for (SRouterController endpoint in endPoints) {
-      /// Se implementa la funcion [setRouter] desde router para guardar todos los metodos
-      route.setRouter( _toRouterFormat(endpoint) );
+      try{
+        /// Se implementa la funcion [setRouter] desde router para guardar todos los metodos
+        route.setRouter( _toRouterFormat(endpoint) );
+        Logs.info(title: "Router", msm: "Routers added on globals routers");
+      }catch(e){
+        Logs.error(title: "ROUTER ERROR", msm: "Error when try to set router on global routers.");
+      }
+
 
     }
 
