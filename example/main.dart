@@ -12,6 +12,10 @@
 ///                                                    *
 /// ****************************************************
 
+import 'dart:async';
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:simple_rest/simple_rest.dart';
 
 import 'controller/user_controller.dart';
@@ -30,11 +34,17 @@ void main() async {
 
   /// Here we use our instance of  [SServer]
   /// to call our init methods of each controller we have in our project.
-  await server.started([
-    UserController.init,
-  ]);
+  await server.started(
+      [
+        UserController.init
+      ]
+  );
 
 
+  /// We can call the data that the user sends by reference.
+  /// We just need to use the [SController] class and call the [request.uri.queryParameters] tribute
+  /// We call the key with which the sent value is supposed to be identified and that's it
+  SController.request.uri.queryParameters['id'];
 
   /// ADDITIONAL NOTES
 

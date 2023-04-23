@@ -1,51 +1,26 @@
-A server app built using [Shelf](https://pub.dev/packages/shelf),
-configured to enable running with [Docker](https://www.docker.com/).
+# simple_rest
 
-This sample code handles HTTP GET requests to `/` and `/echo/<message>`
 
-# Running the sample
+<div style="background-color: #f0f0f0; padding: 10px;">
+  <img src="https://pub.dev/static/img/pub-dev-logo-2x.png?hash=EG7dN74T-aRg8OtEFW85_g" width="200" alt="pub.dev logo">
+</div>
 
-## Running with the Dart SDK
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Nombre del paquete](https://img.shields.io/pub/v/nombre_del_paquete.svg)](https://pub.dev/packages/nombre_del_paquete)
 
-You can run the example with the [Dart SDK](https://dart.dev/get-dart)
-like this:
+### Simple REST is a Dart package that provides a simple way to create RESTful APIs in Dart.
 
+## Installation
+To install Simple REST, add the following dependency to your pubspec.yaml file:
+
+````
+dependencies:
+  simple_rest: ^0.2.0
+````
+
+Then run ```flutter packages get``` on the command line.
+
+## Use
 ```
-$ dart run bin/server.dart
-Server listening on port 8080
-```
-
-And then from a second terminal:
-```
-$ curl http://0.0.0.0:8080
-Hello, World!
-$ curl http://0.0.0.0:8080/echo/I_love_Dart
-I_love_Dart
-```
-
-## Running with Docker
-
-If you have [Docker Desktop](https://www.docker.com/get-started) installed, you
-can build and run with the `docker` command:
-
-```
-$ docker build . -t myserver
-$ docker run -it -p 8080:8080 myserver
-Server listening on port 8080
+import 'package:simple_rest/simple_rest.dart';
 ```
 
-And then from a second terminal:
-```
-$ curl http://0.0.0.0:8080
-Hello, World!
-$ curl http://0.0.0.0:8080/echo/I_love_Dart
-I_love_Dart
-```
-
-You should see the logging printed in the first terminal:
-```
-2021-05-06T15:47:04.620417  0:00:00.000158 GET     [200] /
-2021-05-06T15:47:08.392928  0:00:00.001216 GET     [200] /echo/I_love_Dart
-```
-
-Create .env file and use for config variables.

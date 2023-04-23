@@ -1,3 +1,5 @@
+import 'package:simple_rest/src/controller/s_controller.dart';
+
 import '../model/user_model.dart';
 import '../repository/user_repository.dart';
 
