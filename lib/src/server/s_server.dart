@@ -34,8 +34,8 @@ class SServer{
 
   /// Imports the ENV configurations to start the server.
   SServer.envConfig(){
-    ip = InternetAddress.tryParse(SEnviromentData.ipServer);
-    port = SEnviromentData.portServer;
+    ip = InternetAddress.tryParse(SEnviromentData.ipServer());
+    port = SEnviromentData.portServer();
   }
 
   /// Uses the user's default settings.

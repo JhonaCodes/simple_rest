@@ -13,6 +13,7 @@
 /// ****************************************************
 
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:simple_rest/simple_rest.dart';
@@ -24,6 +25,15 @@ class SController{
 
   static final route = SRouter.getInstanceSRouter;
   static late HttpRequest _request;
+
+  static Future<void> subscribeData({List<Map<dynamic, dynamic>>? jsonDataList, Map<dynamic, dynamic>? jsonData}) async {
+    var jsonString = jsonEncode(jsonDataList ?? jsonData);
+    var response = request.response;
+    response.headers.contentType = ContentType.json;
+    response.write(jsonString);
+    await response.close();
+  }
+
 
   static Future<void> registerEndpoints({required List<SRouterController> endPoints}) async{
 

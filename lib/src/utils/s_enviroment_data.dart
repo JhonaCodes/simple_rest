@@ -35,15 +35,19 @@ class SEnviromentData{
 
   static final _enviroment = _loadEnvFile;
 
-  static String get ipServer => _enviroment['IP_SERVER']?.toString() ?? '0.0.0.0';
-  static int get portServer => int.tryParse(_enviroment['PORT_SERVER']?.toString() ?? '8090') ?? 8090;
-  static String get jwtSecretKey => _enviroment['JWT_LOCAL_KEY']?.toString() ?? '';
-  static String get urlApi => _enviroment['URL_API']?.toString() ?? '';
-  static String get apiKey => _enviroment['API_KEY']?.toString() ?? '';
-  static String get apiAuth => _enviroment['API_AUTH']?.toString() ?? '';
-  static String get userDb => _enviroment['USER_DB']?.toString() ?? '';
-  static String get passDb => _enviroment['PASS_DB']?.toString() ?? '';
-  static String get urlDb => _enviroment['URL_DB']?.toString() ?? '';
+
+
+
+  static String urlApi({String? key})   => _enviroment[key ?? 'URL_API']?.toString()    ?? '127.0.0.1';
+  static String someData({required String key})   => _enviroment[key]?.toString() ?? '';
+  static String apiKey({String? key})   => _enviroment[key ?? 'API_KEY']?.toString()    ?? '';
+  static String apiAuth({String? key})  => _enviroment[key ?? 'API_AUTH']?.toString()   ?? '';
+  static String userDb({String? key})   => _enviroment[key ?? 'USER_DB']?.toString()    ?? '';
+  static String passDb({String? key})   => _enviroment[key ?? 'PASS_DB']?.toString()    ?? '';
+  static String urlDb({String? key})    => _enviroment[key ?? 'URL_DB']?.toString()     ?? '';
+  static String ipServer({String? key}) => _enviroment[ key ?? 'IP_SERVER']?.toString() ?? '0.0.0.0';
+  static String jwtSecretKey ({String? key}) => _enviroment[ key ?? 'JWT_LOCAL_KEY']?.toString() ?? '';
+  static int portServer ({String? key}) => int.tryParse(_enviroment[ key ?? 'PORT_SERVER']?.toString() ?? '8090') ?? 8090;
 
  static Map<String, String> get _loadEnvFile {
 

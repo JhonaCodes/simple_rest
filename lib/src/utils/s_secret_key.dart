@@ -23,7 +23,6 @@ import 'dart:typed_data';
 /// In the end, it would be something like [SSecretKey.generate()]."
 class SSecretKey{
 
-
   static final _random = Random.secure();
 
   /// When using this function, a custom code is generated that must be used in the [.env] file.

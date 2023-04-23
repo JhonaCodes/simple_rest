@@ -32,7 +32,7 @@ class SJwt{
     );
 
     /// We set the signature of our [jwt] using our custom key or the one we generated using []
-    token = jwt.sign(SecretKey( customSecureKey ?? SEnviromentData.jwtSecretKey), expiresIn: duration ?? Duration(days: 15));
+    token = jwt.sign(SecretKey( customSecureKey ?? SEnviromentData.jwtSecretKey()), expiresIn: duration ?? Duration(days: 15));
 
     return token;
   }
@@ -44,7 +44,7 @@ class SJwt{
 
       try {
 
-        JWT.verify(token, SecretKey( customSecureKey ?? SEnviromentData.jwtSecretKey ));
+        JWT.verify(token, SecretKey( customSecureKey ?? SEnviromentData.jwtSecretKey() ));
 
       } on JWTExpiredError {
 
