@@ -1,3 +1,18 @@
+/// ****************************************************
+///                                                    *
+///               By: JhonaCode                        *
+///               Web:     https://jhonacode.com       *
+///               Email:   jhoancode2020@gmail.com     *
+///               Twitter: @jhonacode                  *
+///               Facebook: @jhonacode                 *
+///               Telegram: @jhoancode                 *
+///               March 2023                           *
+///                                                    *
+///         Licensed under the MIT License             *
+///                                                    *
+/// ****************************************************
+
+
 /// Constants for HTTP methods.
 mixin SHttpMethod{
   static String get GET      => 'GET';

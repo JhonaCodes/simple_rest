@@ -1,3 +1,17 @@
+/// ****************************************************
+///                                                    *
+///               By: JhonaCode                        *
+///               Web:     https://jhonacode.com       *
+///               Email:   jhoancode2020@gmail.com     *
+///               Twitter: @jhonacode                  *
+///               Facebook: @jhonacode                 *
+///               Telegram: @jhoancode                 *
+///               March 2023                           *
+///                                                    *
+///         Licensed under the MIT License             *
+///                                                    *
+/// ****************************************************
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -70,7 +84,10 @@ void main() async {
   /// SImple example how to validate users with JWT
   if (SJwt.verifyUser(
       token: SJwt.generateJWT(
-        mail: "JHonatan@gmail.com",
+        jwtUserInfo:
+          {
+            "mail": "JHonatan@gmail.com",
+          }
       ))['response']) {
     print("Usuario valido");
   }

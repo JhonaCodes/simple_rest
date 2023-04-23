@@ -1,18 +1,32 @@
+/// ****************************************************
+///                                                    *
+///               By: JhonaCode                        *
+///               Web:     https://jhonacode.com       *
+///               Email:   jhoancode2020@gmail.com     *
+///               Twitter: @jhonacode                  *
+///               Facebook: @jhonacode                 *
+///               Telegram: @jhoancode                 *
+///               March 2023                           *
+///                                                    *
+///         Licensed under the MIT License             *
+///                                                    *
+/// ****************************************************
+
 import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
 
-/// This class helps to create a key or secret to handle our JWT.
-/// This JWT key must go in our [.env] file "OF THE LIBRARY NOT YOUR PROJECT."
-/// Example [JWT_SECRET_KEY=QvnVrZ1YOXNsiGrY6UMqKA==], without the "[]".
+/// "This class helps to create a key or secret to handle our JWT.
+/// This JWT key must go in our [.env] file 'OF THE LIBRARY NOT YOUR PROJECT.'
+/// Example [JWT_SECRET_KEY=QvnVrZ1YOXNsiGrY6UMqKA==], without the '[]'.
 /// To use this generator, simply call the [SSecretKey] class and invoke the [generate] method.
-/// In the end, it would be something like [SSecretKey.generate()].
+/// In the end, it would be something like [SSecretKey.generate()]."
 class SSecretKey{
 
 
   static final _random = Random.secure();
 
-
+  /// When using this function, a custom code is generated that must be used in the [.env] file.
   static void generate(){
     final values = List<int>.generate(32, (i) => _random.nextInt(256));
 

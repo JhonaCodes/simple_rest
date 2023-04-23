@@ -1,3 +1,18 @@
+/// ****************************************************
+///                                                    *
+///               By: JhonaCode                        *
+///               Web:     https://jhonacode.com       *
+///               Email:   jhoancode2020@gmail.com     *
+///               Twitter: @jhonacode                  *
+///               Facebook: @jhonacode                 *
+///               Telegram: @jhoancode                 *
+///               March 2023                           *
+///                                                    *
+///         Licensed under the MIT License             *
+///                                                    *
+/// ****************************************************
+
+
 import 'dart:io';
 
 import 'package:simple_rest/src/controller/s_controller.dart';
@@ -6,6 +21,10 @@ import '../router/s_router.dart';
 import '../utils/s_enviroment_data.dart';
 import '../utils/s_logs.dart';
 
+/// This class is responsible for initializing the server and registering the [init] functions of each [Controller] class.
+/// This server takes data from 3 different sources: [envConfig], [customConfig], [defaultConfig].
+/// To use [envConfig], you must create a file in the main root named [.env], notice that it must use the '.' before the name
+/// as shown in the previous example.
 class SServer{
 
   InternetAddress? ip;

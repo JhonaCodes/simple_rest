@@ -1,24 +1,36 @@
+/// ****************************************************
+///                                                    *
+///               By: JhonaCode                        *
+///               Web:     https://jhonacode.com       *
+///               Email:   jhoancode2020@gmail.com     *
+///               Twitter: @jhonacode                  *
+///               Facebook: @jhonacode                 *
+///               Telegram: @jhoancode                 *
+///               March 2023                           *
+///                                                    *
+///         Licensed under the MIT License             *
+///                                                    *
+/// ****************************************************
+
+
 import 'dart:io';
 
 import 'package:simple_rest/simple_rest.dart';
 
-import '../router/s_router.dart';
-import '../router/s_router_controller.dart';
-
-/// Todas las clases de lalibreria vana contener la S en mayuscula para indicar que son parte de la libreria
-/// Se debe crear una instacnia del singletton de controller para usarlo despues.
+/// From this [SController] controller, we call the [SRouter] singleton to add routes.
+/// Routes are added using the [registerEndpoints] function.
+/// The parameters that the [registerEndpoints] function receives is a list of type [SRouterController].
 class SController{
 
   static final route = SRouter.getInstanceSRouter;
   static late HttpRequest _request;
 
-  /// Esta funcion deberia ser singelston para que se registre en toda la aplicacion y nucna se peirda ele stado de la instancia
-  /// Esta funcion se llama desde la funcion [started] de todas las clases controller que creemos
   static Future<void> registerEndpoints({required List<SRouterController> endPoints}) async{
 
+    /// We iterate through the endpoints present in the list of type [SRouterController].
     for (SRouterController endpoint in endPoints) {
       try{
-        /// Se implementa la funcion [setRouter] desde router para guardar todos los metodos
+        /// We call the function [setRouter] to add the routes to our singleton [SRouter].
         route.setRouter( _toRouterFormat(endpoint) );
         Logs.info(title: "Router", msm: "Routers added on globals routers");
       }catch(e){
@@ -30,18 +42,16 @@ class SController{
 
   }
 
-  /// Esta funcion abstrae nustros endpoint, patch y function
-  /// para ser almacenados como clave valor y peudan ser llamados a solicitud del cliente
+
+  /// We use this function to establish the format in which our endpoints [endPoint] will be saved.
+  /// These endpoints serve as key value pairs to identify the function that we need to call.
   static Map<String, Function> _toRouterFormat(SRouterController endPoint) => {
       '${endPoint.http}:/${ endPoint.literalPath ?? endPoint.pathList!.join("/")}': endPoint.function
     };
 
+  /// To be able to listen to the state of the [request], we need to create [get] and [set] methods.
+  /// This helps to keep track of the status of our requests and generate a response based on our query.
   static set request (HttpRequest request) => _request = request;
-
   static HttpRequest get request => _request;
 
   }
-
-/// esta clase se usa al finalizar toda la aplicacion donde se pondran con un enum que debe ser.
-/// Primero la palabra enum, luego el nombre de la clase, seigo de la palabra router.
-/// [EnumUserRouter], cada clase en el controlador debe tener su propio enum que identifique sus endpoins
