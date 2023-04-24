@@ -12,14 +12,9 @@
 ///                                                    *
 /// ****************************************************
 
-import 'dart:async';
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:simple_rest/simple_rest.dart';
 
 import 'controller/user_controller.dart';
-
 
 
 void main() async {

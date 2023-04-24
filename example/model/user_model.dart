@@ -1,4 +1,3 @@
-
 ///We create the model of our entity with its respective constructors and toJson
 class UserModel{
   late String name;
@@ -18,9 +17,9 @@ class UserModel{
   Map<String, dynamic> toJson(){
     Map<String, dynamic> userJson ={};
 
-    userJson['name'] = this.name;
-    userJson['mail'] = this.mail;
-    userJson['phone'] = this.phone;
+    userJson['name']  = name;
+    userJson['mail']  = mail;
+    userJson['phone'] = phone;
 
     return userJson;
 
