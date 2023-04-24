@@ -28,7 +28,7 @@ class HttpExceptionHandler{
       HttpStatus.continue_: () => _logPrint("Continue"),
       HttpStatus.switchingProtocols: () => _logPrint("Switching Protocols"),
       HttpStatus.processing: () => _logPrint("Processing"),
-      HttpStatus.ok: () => _logPrintError("Possible error on request"),
+      HttpStatus.ok: () => _logPrint("Ok"),
       HttpStatus.created: () => _logPrint("Created"),
       HttpStatus.accepted: () => _logPrint("Accepted"),
       HttpStatus.noContent: () => _logPrintError("No Content"),
@@ -101,13 +101,13 @@ class HttpExceptionHandler{
     };
 
     try {
-      response.headers.contentType = ContentType.json;
-
 
       Function? reportLog = statusResponse[response.response.statusCode];
-      reportLog!();
 
+      await reportLog!();
       response.response.write('{"response": "$_textError"}');
+
+ ///     response.headers.contentType = ContentType.json;
 
     } catch (e) {
       if (e is FormatException || e is HttpException) {

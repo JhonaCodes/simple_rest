@@ -60,7 +60,7 @@ class SServer{
     /// where all the routes will be registered in our singleton that is already initialized.
     for (var fun in initialization) {
       Logs.info(title: "SERVICES", msm: "Initializing Controllers");
-      fun.call();
+      fun();
     }
 
     try {
@@ -69,8 +69,8 @@ class SServer{
 
       /// Initialize our server by reading the requests from the clients. They will already have all our services registered.
       service.listen((request) {
-        SController.request = request;
         router.route(request);
+        SController.request = request;
       });
 
       Logs.debug(title: "SERVER STATUS", msm: "Server Started on ${service.port}");

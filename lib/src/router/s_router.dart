@@ -32,12 +32,13 @@ class SRouter{
     return _router!;
   }
 
-  Map<String, Function> getRoute() => _routes;
+  Map<String, Function> get getRoute => _routes;
 
   /// This function is called exclusively from the controller to add the endpoints registered in the API's controller,
   /// abstracting the registration process from the [SController] class.
   void setRouter(Map<String, Function> endPoint) {
     _routes.addAll(endPoint);
+    Logs.info(title: "ENDPOINTS", msm: _routes);
     Logs.info(title: "PATH ONLINE", msm: _routes.keys.join("\n"));
   }
 
@@ -54,12 +55,12 @@ class SRouter{
     try{
 
       /// This callback function calls the function that contains the key-value pair [methodPath].
-      var callback = getRoute()[methodPath];
+      var callback = getRoute[methodPath];
 
       /// It checks whether it is null or not to be executed later asynchronously.
       if (callback != null) {
 
-        await callback(request);
+        await callback();
 
       } else {
 
