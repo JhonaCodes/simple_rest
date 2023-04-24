@@ -28,7 +28,6 @@ class HttpExceptionHandler{
       HttpStatus.continue_: () => _logPrint("Continue"),
       HttpStatus.switchingProtocols: () => _logPrint("Switching Protocols"),
       HttpStatus.processing: () => _logPrint("Processing"),
-      HttpStatus.ok: () => _logPrint("Ok"),
       HttpStatus.created: () => _logPrint("Created"),
       HttpStatus.accepted: () => _logPrint("Accepted"),
       HttpStatus.noContent: () => _logPrintError("No Content"),
@@ -107,7 +106,7 @@ class HttpExceptionHandler{
       await reportLog!();
       response.response.write('{"response": "$_textError"}');
 
- ///     response.headers.contentType = ContentType.json;
+      response.headers.contentType = ContentType.json;
 
     } catch (e) {
       if (e is FormatException || e is HttpException) {
@@ -115,7 +114,6 @@ class HttpExceptionHandler{
         response.response.statusCode = HttpStatus.badRequest;
         response.response.write('{"response": "The url you are using is incorrect, please check immediately."}');
       } else {
-        Logs.error(title: "HTTP Status", msm: "Unknown error: $e");
         response.response.write('{"response": "Unknown error"}');
       }
     }

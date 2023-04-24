@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:simple_rest/simple_rest.dart';
 
 import '../model/user_model.dart';
@@ -20,6 +18,12 @@ class UserController  {
 
     List<Map<String, dynamic>> usersJson = users.map((user) => user.toJson()).toList();
 
+
+    /// We can call the data that the user sends by reference.
+    /// We just need to use the [SController] class and call the [request.uri.queryParameters] tribute
+    /// We call the key with which the sent value is supposed to be identified and that's it
+    SController.request.uri.queryParameters['id'];
+
     ///After processing our information, we subscribe our data
     ///to the response string to be displayed -
     ///under the query made by our client, which is -
@@ -27,6 +31,8 @@ class UserController  {
     SController.subscribeData(
       jsonDataList: usersJson
     );
+
+
 
   }
 

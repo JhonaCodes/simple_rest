@@ -40,12 +40,6 @@ void main() async {
       ]
   );
 
-
-  /// We can call the data that the user sends by reference.
-  /// We just need to use the [SController] class and call the [request.uri.queryParameters] tribute
-  /// We call the key with which the sent value is supposed to be identified and that's it
-  //SController.request.uri.queryParameters['id'];
-
   /// ADDITIONAL NOTES
 
   /// We can also use the JWT function

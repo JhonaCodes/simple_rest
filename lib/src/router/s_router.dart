@@ -49,8 +49,7 @@ class SRouter{
 
     var methodPath = '${request.method}:${request.uri.path}';
 
-    Logs.debug(title: "REQUEST CLIENT",msm: request.method);
-    Logs.debug(title: "PATH CLIENT",msm: request.uri.path);
+    if(request.uri.path != '/favicon.ico') Logs.debug(title: "REQUEST CLIENT",msm: methodPath);
 
     try{
 
