@@ -24,6 +24,12 @@ class UserService {
     return await userRepository.getAllUser();
   }
 
+  void saveUser(UserModel userModel)async{
+
+    userRepository.users.add(userModel);
+    userRepository.saveUser(userModel);
+
+  }
 
 
 
