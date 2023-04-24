@@ -1,3 +1,5 @@
+import 'package:simple_rest/simple_rest.dart';
+
 import '../model/user_model.dart';
 import '../repository/user_repository.dart';
 
@@ -31,6 +33,10 @@ class UserService {
 
   }
 
+  bool removeUser(String name){
+
+    return userRepository.deleteUser(name);
+  }
 
 
 }

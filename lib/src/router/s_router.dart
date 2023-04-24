@@ -32,6 +32,7 @@ class SRouter{
     return _router!;
   }
 
+
   Map<String, Function> get getRoute => _routes;
 
   /// This function is called exclusively from the controller to add the endpoints registered in the API's controller,

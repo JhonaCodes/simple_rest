@@ -4,5 +4,6 @@ import '../model/user_model.dart';
 mixin UserCrud{
   Future<List<UserModel>> getAllUser();
   void saveUser(UserModel userModel);
+  bool deleteUser(String name);
 
 }
