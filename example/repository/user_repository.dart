@@ -6,6 +6,8 @@ import '../model/user_model.dart';
 /// We create the user model repository for the manipulation and return of requested data.
 class UserRepository implements UserCrud{
 
+  /// En este se pone como procesamos la informacion recibida, crear, eliminar, etc etc, la logica en general
+
   List<UserModel> users = [
   UserModel(name: "name1", mail: "mail 1", phone: "phone 1"),
   UserModel(name: "name2", mail: "mail 2", phone: "phone 2"),
@@ -14,33 +16,40 @@ class UserRepository implements UserCrud{
   UserModel(name: "name5", mail: "mail 5", phone: "phone 5"),
   ];
 
+
   @override
-  Future<List<UserModel>> getAllUser() async{
+  Future<bool> deleteById(Object id) async{
+    bool validation = false;
+
+    users.removeWhere((element) =>  (element.name == id.toString()) ? validation = true : validation = false );
+    Logs.info(title: "ESTADO ELIMINACION", msm: users);
+
+    return validation;
+  }
+
+  @override
+  Future<List<UserModel>> getAll() async{
+    // TODO: implement getAll
     return users;
   }
 
   @override
-  void saveUser(UserModel userModel) {
-
-    users.add(userModel);
-
+  Future<UserModel> getById(Object id) {
+    // TODO: implement getById
+    throw UnimplementedError();
   }
 
   @override
-  bool deleteUser(String name) {
+  Future<UserModel> save(UserModel entity) async{
+    users.add(entity);
 
-    bool? validation;
+    return entity;
+  }
 
-    users.removeWhere((element) => element.name == name);
-    Logs.info(title: "ESTADO ELIMINACION", msm: users);
-
-    users.map((e) {
-      Logs.info(title: "ESTADO ELIMINACION NAME", msm: e.name);
-      e.name == name ? validation = false : validation = true;
-    });
-
-    return true;
-
+  @override
+  Future<UserModel> update(UserModel entity) {
+    // TODO: implement update
+    throw UnimplementedError();
   }
 
 }

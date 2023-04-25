@@ -1,5 +1,3 @@
-import 'package:simple_rest/simple_rest.dart';
-
 import '../model/user_model.dart';
 import '../repository/user_repository.dart';
 
@@ -8,34 +6,29 @@ import '../repository/user_repository.dart';
 /// and thus see the information we request.
 class UserService {
 
+  /// En este punto es donde hacemos los llamados a la infromacion,
+  /// procesamos los datos para ser enviados a su respository y se ejecute la accion
   var userRepository = UserRepository();
+
+
+
 
   Future<List<UserModel>> getAllUsers() async{
 
-    userRepository.users.clear();
-
-    userRepository.users.addAll([
-      UserModel(name: "name 1", mail: "mail 1", phone: "phone 1"),
-      UserModel(name: "name 2", mail: "mail 2", phone: "phone 2"),
-      UserModel(name: "name 3", mail: "mail 3", phone: "phone 3"),
-      UserModel(name: "name 4", mail: "mail 4", phone: "phone 4"),
-      UserModel(name: "name 5", mail: "mail 5", phone: "phone 5"),
-    ]
-    );
-
-    return await userRepository.getAllUser();
+    return await userRepository.getAll();
   }
 
   void saveUser(UserModel userModel)async{
 
     userRepository.users.add(userModel);
-    userRepository.saveUser(userModel);
+
+  await userRepository.save(userModel);
 
   }
 
-  bool removeUser(String name){
+  Future<bool> removeUser(String name)async{
 
-    return userRepository.deleteUser(name);
+    return await userRepository.deleteById(name);
   }
 
 

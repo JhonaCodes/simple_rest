@@ -8,17 +8,17 @@ class UserModel{
 
   factory UserModel.fromJson(Map<dynamic, dynamic> data){
    return UserModel(
-      name: data['name'].toString(),
-      phone: data['phone'].toString(),
-      mail: data['mail'].toString()
+      name: data['name'] ?? '',
+      phone: data['phone'] ?? '',
+      mail: data['mail'] ?? ''
     );
   }
 
   Map<String, dynamic> toJson(){
     Map<String, dynamic> userJson ={};
 
-    userJson['name']  = name;
-    userJson['mail']  = mail;
+    userJson['name'] = name;
+    userJson['mail'] = mail;
     userJson['phone'] = phone;
 
     return userJson;
