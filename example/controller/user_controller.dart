@@ -57,7 +57,7 @@ class UserController {
     /// Read Data with SController.request
     /// Serialize data with [SSerializer.build]
     UserModel userModel = UserModel.fromJson(
-        await SSerializer.build( SController.request )
+        await SSerializer.buildModel( SController.request )
     );
 
     userService.saveUser(userModel);
@@ -68,13 +68,36 @@ class UserController {
 
   }
 
+  /// Example Upload File
+  static Future<void> saveFile() async{
+
+    Map status = {};
+
+    /// This way we save all types of files.
+    /// You define at this point what type of files and size you allow.
+    /// the response is added to your variable in this case [status].
+    /// you name it whatever you want.
+    /// don't end your path with [/].
+    await SSerializer.buildFile(
+        SController.request,
+        pathToSaveFile: '/Volumes/Data/DartLang/files_simple_rest',
+    ).then((value) => status = value);
+
+
+    SController.subscribeData(
+        jsonDataList: [status]
+    );
+
+
+  }
+
   /// Example DELETE
   static Future<bool> deleteUser()async{
 
+    /// In this way you use the data that you add to the url of your request
     var uri = Uri.parse(SController.request.uri.toString());
-
-    var idOrName = uri.queryParameters['name'];
-    Logs.info(title: "QUERRY PARAMETERS", msm: idOrName);
+    var idOrName = uri.queryParameters['id'];
+    /// At this point you get the id of your user in the variable[idOrName]
 
     bool statusDeleteUser = await userService.removeUser(idOrName.toString());
 
@@ -119,12 +142,22 @@ class UserController {
         function: saveUser,
       ),
 
+      /// To send values or parameters in the link.
+      /// You must end the path with [/]
+      /// on the client should have something like [http://myapihost:123/user/?id=12e23ed23e]
       SRouterController(
         http: SHttpMethod.DELETE,
         literalPath: 'user/',
         function: deleteUser,
       ),
 
+      /// In this way, the path and the function that is responsible for adding files are added.
+      /// In this case the idea was to add photos, you can put the path that you like best.
+      SRouterController(
+        http: SHttpMethod.POST,
+        literalPath: 'user/photo',
+        function: saveFile,
+      ),
     ]);
   }
 
