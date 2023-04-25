@@ -68,7 +68,7 @@ class SServer{
       service = await HttpServer.bind(ip, port!);
 
       /// Initialize our server by reading the requests from the clients. They will already have all our services registered.
-      service.listen((request) {
+      service.listen((HttpRequest request) {
         SController.request = request;
         router.route(request);
       });
