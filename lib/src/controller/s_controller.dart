@@ -42,13 +42,15 @@ class SController{
       try{
         /// We call the function [setRouter] to add the routes to our singleton [SRouter].
         route.setRouter( _toRouterFormat(endpoint) );
-        Logs.info(title: "Router", msm: "Routers added on globals routers");
       }catch(e){
         Logs.error(title: "ROUTER ERROR", msm: "Error when try to set router on global routers.");
       }
 
 
     }
+
+    Logs.info(title: "ENDPOINTS", msm: route.getRoute.keys.join("\n"));
+    Logs.info(title: "ENDPOINTS ON FUNCTIONS", msm: route.getRoute);
 
   }
 
@@ -63,5 +65,6 @@ class SController{
   /// This helps to keep track of the status of our requests and generate a response based on our query.
   static set request (HttpRequest request) => _request = request;
   static HttpRequest get request => _request;
+
 
   }
