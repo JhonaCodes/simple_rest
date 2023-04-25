@@ -69,8 +69,8 @@ class SServer{
 
       /// Initialize our server by reading the requests from the clients. They will already have all our services registered.
       service.listen((request) {
-        router.route(request);
         SController.request = request;
+        router.route(request);
       });
 
       Logs.debug(title: "SERVER STATUS", msm: "Server Started on ${service.port}");

@@ -11,4 +11,11 @@ class UserRepository implements UserCrud{
     return users;
   }
 
+  @override
+  void saveUser(UserModel userModel) {
+
+    users.add(userModel);
+
+  }
+
 }

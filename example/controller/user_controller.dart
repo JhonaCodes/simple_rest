@@ -1,4 +1,5 @@
 import 'package:simple_rest/simple_rest.dart';
+import 'package:simple_rest/src/helpers/s_serializator.dart';
 
 import '../model/user_model.dart';
 
@@ -12,6 +13,7 @@ class UserController  {
 
   static var userService = UserService();
 
+  /// Example GET
   static  Future<void> getAllUser() async{
 
     List<UserModel> users = await userService.getAllUsers();
@@ -32,7 +34,25 @@ class UserController  {
       jsonDataList: usersJson
     );
 
+  }
 
+
+  /// Example POST
+  static Future<void> saveUser() async{
+
+    /// Coming data form json format
+    /// use [SSerializer.build(SController.request)]
+    /// Read Data with SController.request
+    /// Serialize data with [SSerializer.build]
+    UserModel userModel = UserModel.fromJson(
+        await SSerializer.build( SController.request )
+    );
+
+    userService.saveUser(userModel);
+
+    SController.subscribeData(
+        jsonDataList: [userModel.toJson()]
+    );
 
   }
 
@@ -48,11 +68,19 @@ class UserController  {
   static void init() {
 
     SController.registerEndpoints(endPoints: [
+
       SRouterController(
         http: SHttpMethod.GET,
         literalPath: 'user/all',
         function: getAllUser,
       ),
+
+      SRouterController(
+        http: SHttpMethod.POST,
+        literalPath: 'user',
+        function: saveUser,
+      ),
+
     ]);
   }
 

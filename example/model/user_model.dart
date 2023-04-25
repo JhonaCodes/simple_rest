@@ -6,7 +6,7 @@ class UserModel{
 
   UserModel({required this.name, required  this.mail, required this.phone});
 
-  factory UserModel.fromJson(Map<String, dynamic> data){
+  factory UserModel.fromJson(Map<dynamic, dynamic> data){
    return UserModel(
       name: data['name'].toString(),
       phone: data['phone'].toString(),
