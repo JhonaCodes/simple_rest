@@ -30,7 +30,7 @@ class SServer{
   InternetAddress? ip;
   int? port;
 
-  var service;
+  HttpServer? service;
 
   /// Imports the ENV configurations to start the server.
   SServer.envConfig(){
@@ -68,12 +68,12 @@ class SServer{
       service = await HttpServer.bind(ip, port!);
 
       /// Initialize our server by reading the requests from the clients. They will already have all our services registered.
-      service.listen((HttpRequest request) {
+      service!.listen((HttpRequest request) {
         SController.request = request;
         router.route(request);
       });
 
-      Logs.debug(title: "SERVER STATUS", msm: "Server Started on ${service.port}");
+      Logs.debug(title: "SERVER STATUS", msm: "Server Started on ${service!.port}");
 
     } on SocketException catch (e) {
       Logs.error(title: "SERVER STATUS", msm: "SocketException occurred: $e");

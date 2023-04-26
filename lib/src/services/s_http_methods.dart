@@ -15,9 +15,9 @@
 
 /// Constants for HTTP methods.
 mixin SHttpMethod{
-  static String get GET      => 'GET';
-  static String get POST     => 'POST';
-  static String get PUT      => 'PUT';
-  static String get PATCH    => 'PATCH';
-  static String get DELETE   => 'DELETE';
+  static String get get      => 'GET';
+  static String get post     => 'POST';
+  static String get put      => 'PUT';
+  static String get patch    => 'PATCH';
+  static String get delete   => 'DELETE';
 }

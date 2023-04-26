@@ -109,7 +109,7 @@ class UserController {
   /// fetched from [SController]
   /// inside this we register our [endPoints],
   /// using the [SRouterController] case as a model and for Http requests,
-  /// we use the [SHttpMethod] class which in this case is a [GET] type
+  /// we use the [SHttpMethod] class which in this case is a [get] type
   /// We create our path which can be literal or list of text.
   /// We add the function in this case [getAllUser] and that's it.
   static void init() {
@@ -117,19 +117,19 @@ class UserController {
     SController.registerEndpoints(endPoints: [
 
       SRouterController(
-        http: SHttpMethod.GET,
+        http: SHttpMethod.get,
         literalPath: 'user/all',
         function: getAllUser,
       ),
 
       SRouterController(
-        http: SHttpMethod.GET,
+        http: SHttpMethod.get,
         literalPath: 'user/',
         function: getUserByName,
       ),
 
       SRouterController(
-        http: SHttpMethod.POST,
+        http: SHttpMethod.post,
         literalPath: 'user',
         function: saveUser,
       ),
@@ -138,7 +138,7 @@ class UserController {
       /// You must end the path with [/]
       /// on the client should have something like [http://myapihost:123/user/?id=12e23ed23e]
       SRouterController(
-        http: SHttpMethod.DELETE,
+        http: SHttpMethod.delete,
         literalPath: 'user/',
         function: deleteUser,
       ),
@@ -146,7 +146,7 @@ class UserController {
       /// In this way, the path and the function that is responsible for adding files are added.
       /// In this case the idea was to add photos, you can put the path that you like best.
       SRouterController(
-        http: SHttpMethod.POST,
+        http: SHttpMethod.post,
         literalPath: 'user/photo',
         function: saveFile,
       ),

@@ -24,7 +24,7 @@ import 'package:simple_rest/simple_rest.dart';
 class SController{
 
   static final route = SRouter.getInstanceSRouter;
-  static late HttpRequest _request;
+  static late HttpRequest request;
 
   static Future<void> subscribeData({List<Map<dynamic, dynamic>>? jsonDataList, Map<dynamic, dynamic>? jsonData}) async {
     var jsonString = jsonEncode(jsonDataList ?? jsonData);
@@ -60,11 +60,6 @@ class SController{
   static Map<String, Function> _toRouterFormat(SRouterController endPoint) => {
       '${endPoint.http}:/${ endPoint.literalPath ?? endPoint.pathList!.join("/")}': endPoint.function
     };
-
-  /// To be able to listen to the state of the [request], we need to create [get] and [set] methods.
-  /// This helps to keep track of the status of our requests and generate a response based on our query.
-  static set request (HttpRequest request) => _request = request;
-  static HttpRequest get request => _request;
 
 
   }
