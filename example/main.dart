@@ -73,7 +73,4 @@ void main() async {
   /// [dart_jsonwebtoken] ^2.7.1
 
 
-  /// Next update:
-  /// Ability to upload files using only the dart:io library.
-
 }

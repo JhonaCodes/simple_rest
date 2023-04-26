@@ -1,28 +1,20 @@
 import 'package:simple_rest/simple_rest.dart';
-import 'package:simple_rest/src/helpers/s_serializator.dart';
-
 
 import '../model/user_model.dart';
-
 import '../service/user_service.dart';
-
 
 ///We use our [UserController] to call the data from our service,
 ///then transform it into a json using our [userModel] function [toJson]
 ///and transform it into a [List] to return a [Map] listing.
 class UserController {
 
-
-  /// Esta clase interaactua con el service y procesa la infromacion recibida enviandola al Suscribedata
+  /// This class interacts with the service and processes the received information by sending it to the SubscribeData method.
   static var userService = UserService();
-
-
 
   /// Example GET
   static  Future<void> getAllUser() async{
 
     List<UserModel> users = await userService.getAllUsers();
-
     List<Map<String, dynamic>> usersJson = users.map((user) => user.toJson()).toList();
 
     ///After processing our information, we subscribe our data
