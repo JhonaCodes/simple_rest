@@ -21,7 +21,7 @@ Or just type on console:
 dart pub add simple_rest
 ```
 
-Then run ```flutter packages get``` on the command line.
+Then run ```dart pub get``` on the command line.
 
 ## Use
 ```dart
