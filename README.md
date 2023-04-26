@@ -1,7 +1,7 @@
 # simple_rest -> UNDER CONSTRUCTION
 
 
-<div style="background-color: #000000; padding: 10px;">
+<div style="background-color: #0000; padding: 10px;">
   <img src="https://pub.dev/static/img/pub-dev-logo-2x.png?hash=EG7dN74T-aRg8OtEFW85_g" width="200" alt="pub.dev logo">
 </div>
 
@@ -14,8 +14,12 @@ To install Simple REST, add the following dependency to your pubspec.yaml file:
 
 ````dart
 dependencies:
-  simple_rest: ^0.2.0
+  simple_rest: ^0.3.1
 ````
+Or just type on console:
+```dart
+dart pub add simple_rest
+```
 
 Then run ```flutter packages get``` on the command line.
 
