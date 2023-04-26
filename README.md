@@ -1,11 +1,11 @@
 # simple_rest -> UNDER CONSTRUCTION
 
 
-<div style="background-color: #f0f0f0; padding: 10px;">
+<div style="background-color: #000000; padding: 10px;">
   <img src="https://pub.dev/static/img/pub-dev-logo-2x.png?hash=EG7dN74T-aRg8OtEFW85_g" width="200" alt="pub.dev logo">
 </div>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Nombre del paquete](https://img.shields.io/pub/v/nombre_del_paquete.svg)](https://pub.dev/packages/nombre_del_paquete)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Nombre del paquete](https://img.shields.io/pub/v/simple_rest.svg)](https://pub.dev/packages/simple_rest)
 
 ### Simple REST is a Dart package that provides a simple way to create RESTful APIs in Dart.
 
