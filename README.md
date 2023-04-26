@@ -14,7 +14,7 @@ To install Simple REST, add the following dependency to your pubspec.yaml file:
 
 ````dart
 dependencies:
-  simple_rest: ^0.3.1
+  simple_rest: ^0.3.3
 ````
 Or just type on console:
 ```dart
