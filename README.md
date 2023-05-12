@@ -1,4 +1,4 @@
-# simple_rest -> UNDER CONSTRUCTION
+# simple_rest
 
 
 <div style="background-color: #0000; padding: 10px;">
