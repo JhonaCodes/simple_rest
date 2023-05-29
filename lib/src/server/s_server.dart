@@ -2,10 +2,10 @@
 ///                                                    *
 ///               By: JhonaCode                        *
 ///               Web:     https://jhonacode.com       *
-///               Email:   jhoancode2020@gmail.com     *
+///               Email:   jhonacode2020@gmail.com     *
 ///               Twitter: @jhonacode                  *
 ///               Facebook: @jhonacode                 *
-///               Telegram: @jhoancode                 *
+///               Telegram: @jhonacode                 *
 ///               March 2023                           *
 ///                                                    *
 ///         Licensed under the MIT License             *

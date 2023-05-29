@@ -2,10 +2,10 @@
 ///                                                    *
 ///               By: JhonaCode                        *
 ///               Web:     https://jhonacode.com       *
-///               Email:   jhoancode2020@gmail.com     *
+///               Email:   jhonacode2020@gmail.com     *
 ///               Twitter: @jhonacode                  *
 ///               Facebook: @jhonacode                 *
-///               Telegram: @jhoancode                 *
+///               Telegram: @jhonacode                 *
 ///               March 2023                           *
 ///                                                    *
 ///         Licensed under the MIT License             *
@@ -42,23 +42,8 @@ class SJwt{
   /// For a valid jwt, it reports expiration date, system responsible, and sender's email.
   static Map<String, dynamic> verifyUser({required String token, String? customSecureKey}){
 
-      try {
-
-        JWT.verify(token, SecretKey( customSecureKey ?? SEnviromentData.jwtSecretKey() ));
-
-      } on JWTExpiredError {
-
-        Logs.simpleFailure(title: "JWT", msm: "JWT expired");
-
-        return { "response": false };
-
-      } on JWTError catch (ex) {
-
-        Logs.simpleError(title: "JWT", msm: ex.message);
-
-        return { "response": false };
-
-      }
+      
+    JWT.verify(token, SecretKey( customSecureKey ?? SEnviromentData.jwtSecretKey() ));
 
       Logs.simpleInfo(title: "JWT", msm: "User Validated");
       return { "response": true };

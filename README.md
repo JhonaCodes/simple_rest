@@ -5,16 +5,16 @@
   <img src="https://pub.dev/static/img/pub-dev-logo-2x.png?hash=EG7dN74T-aRg8OtEFW85_g" width="200" alt="pub.dev logo">
 </div>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Nombre del paquete](https://img.shields.io/pub/v/simple_rest.svg)](https://pub.dev/packages/simple_rest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![simple_rest](https://img.shields.io/pub/v/simple_rest.svg)](https://pub.dev/packages/simple_rest)
 
-### Simple REST is a Dart package that provides a simple way to create RESTful APIs in Dart.
+### simple_rest is a Dart package that provides a simple way to create RESTful APIs in Dart.
 
 ## Installation
-To install Simple REST, add the following dependency to your pubspec.yaml file:
+To install simple_rest, add the following dependency to your pubspec.yaml file:
 
 ````dart
 dependencies:
-  simple_rest: ^0.3.4
+  simple_rest: ^0.3.5
 ````
 Or just type on console:
 ```dart
@@ -407,10 +407,10 @@ class UserController {
 ///                                                    *
 ///               By: JhonaCode                        *
 ///               Web:     https://jhonacode.com       *
-///               Email:   jhoancode2020@gmail.com     *
+///               Email:   jhonacode2020@gmail.com     *
 ///               Twitter: @jhonacode                  *
 ///               Facebook: @jhonacode                 *
-///               Telegram: @jhoancode                 *
+///               Telegram: @jhonacode                 *
 ///               March 2023                           *
 ///                                                    *
 ///         Licensed under the MIT License             *
