@@ -14,7 +14,7 @@ To install simple_rest, add the following dependency to your pubspec.yaml file:
 
 ````dart
 dependencies:
-  simple_rest: ^0.3.5
+  simple_rest: ^0.3.6
 ````
 Or just type on console:
 ```dart
@@ -214,10 +214,10 @@ void mian()async{
 
 This is how our server will be initialized and in my case, we can use our server as localhost on port 8080 with the endpoint user/all, which would look like this."https://localhost:8080/user/al"
 
-![server_inicialization.png](screenshoots%2Fserver_inicialization.png)
+![server_inicialization.png](https://raw.githubusercontent.com/JhonaCodes/simple_rest/e8bae7d470798e7860767458864c708ffcb1f660/screenshoots/server_inicialization.png)
 
 using
-![endpoint.png](screenshoots%2Fendpoint.png)
+![endpoint.png](https://raw.githubusercontent.com/JhonaCodes/simple_rest/e8bae7d470798e7860767458864c708ffcb1f660/screenshoots/endpoint.png)
 
 # Aditional
 
