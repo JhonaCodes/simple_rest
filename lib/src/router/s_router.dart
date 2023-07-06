@@ -20,34 +20,29 @@ import 'package:shelf_router/shelf_router.dart';
 
 import 'package:simple_rest/src/annotations/annotations.dart';
 
-
 /// This class establishes the routes for your API.
-class SRouter{
-
-
+class SRouter {
   static void scanAndRegisterRoutesController(Router app, List controllers) {
-    Map<String, String> header = {
-      'content-type': 'application/json'
-    };
+    Map<String, String> header = {'content-type': 'application/json'};
 
     for (var controllerType in controllers) {
       var controllerMirror = reflectClass(controllerType);
       var controllerMetadata = controllerMirror.metadata.first.reflectee;
 
-      var methods = controllerMirror.instanceMembers.values.whereType<MethodMirror>();
+      var methods =
+          controllerMirror.instanceMembers.values.whereType<MethodMirror>();
 
       for (var method in methods) {
         for (var metadata in method.metadata) {
-
-
-          switch(metadata.reflectee.runtimeType){
+          switch (metadata.reflectee.runtimeType) {
             case GetMapping:
               var methodMetadata = metadata.reflectee;
               var methodPath = methodMetadata.path;
               var methodName = method.simpleName;
               var fullPath = '${controllerMetadata.path}$methodPath';
               app.get(fullPath, (Request request) {
-                var instanceMirror = controllerMirror.newInstance(const Symbol(''), []);
+                var instanceMirror =
+                    controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = _extractArguments(method, request);
                 var result = instanceMirror.invoke(methodName, arguments);
                 var jsonResponse = jsonEncode(result.reflectee);
@@ -61,7 +56,8 @@ class SRouter{
               var fullPath = '${controllerMetadata.path}$methodPath';
               app.post(fullPath, (Request request) async {
                 var bodyData = await request.readAsString();
-                var instanceMirror = controllerMirror.newInstance(const Symbol(''), []);
+                var instanceMirror =
+                    controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = [bodyData];
                 var result = instanceMirror.invoke(methodName, arguments);
                 var jsonResponse = jsonEncode(result.reflectee);
@@ -75,7 +71,8 @@ class SRouter{
               var fullPath = '${controllerMetadata.path}$methodPath';
               app.put(fullPath, (Request request) async {
                 var bodyData = await request.readAsString();
-                var instanceMirror = controllerMirror.newInstance(const Symbol(''), []);
+                var instanceMirror =
+                    controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = [bodyData];
                 var result = instanceMirror.invoke(methodName, arguments);
                 var jsonResponse = jsonEncode(result.reflectee);
@@ -89,7 +86,8 @@ class SRouter{
               var fullPath = '${controllerMetadata.path}$methodPath';
               app.patch(fullPath, (Request request) async {
                 var bodyData = await request.readAsString();
-                var instanceMirror = controllerMirror.newInstance(const Symbol(''), []);
+                var instanceMirror =
+                    controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = [bodyData];
                 var result = instanceMirror.invoke(methodName, arguments);
                 var jsonResponse = jsonEncode(result.reflectee);
@@ -102,7 +100,8 @@ class SRouter{
               var methodName = method.simpleName;
               var fullPath = '${controllerMetadata.path}$methodPath';
               app.delete(fullPath, (Request request) {
-                var instanceMirror = controllerMirror.newInstance(const Symbol(''), []);
+                var instanceMirror =
+                    controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = _extractArguments(method, request);
                 var result = instanceMirror.invoke(methodName, arguments);
                 var jsonResponse = jsonEncode(result.reflectee);
@@ -110,7 +109,6 @@ class SRouter{
               });
               break;
           }
-
         }
       }
     }
@@ -120,15 +118,26 @@ class SRouter{
     var arguments = <dynamic>[];
 
     for (var parameter in method.parameters) {
-
-      if (parameter.metadata.any((metadata) => metadata.reflectee.runtimeType == PathVariable)) {
-        var paramName = parameter.metadata.firstWhere((metadata) => metadata.reflectee.runtimeType == PathVariable).reflectee.name;
+      if (parameter.metadata
+          .any((metadata) => metadata.reflectee.runtimeType == PathVariable)) {
+        var paramName = parameter.metadata
+            .firstWhere(
+                (metadata) => metadata.reflectee.runtimeType == PathVariable)
+            .reflectee
+            .name;
         var paramValue = _getPathParameter(request, paramName);
         arguments.add(paramValue);
-      } else if (parameter.metadata.any((metadata) => metadata.reflectee.runtimeType == BodyAttribute)) {
-        var paramName = parameter.metadata.firstWhere((metadata) => metadata.reflectee.runtimeType == BodyAttribute).reflectee.key;
+      } else if (parameter.metadata
+          .any((metadata) => metadata.reflectee.runtimeType == BodyAttribute)) {
+        var paramName = parameter.metadata
+            .firstWhere(
+                (metadata) => metadata.reflectee.runtimeType == BodyAttribute)
+            .reflectee
+            .key;
         var paramValue = _getBodyParameter(request, paramName);
         arguments.add(paramValue);
+      } else if (parameter.type.reflectedType == Request) {
+        arguments.add(request);
       }
     }
 
@@ -136,19 +145,16 @@ class SRouter{
   }
 
   /// Take a parameter
-  static dynamic _getPathParameter(Request request, String paramName) {
+  static dynamic _getPathParameter(Request request, dynamic paramName) {
     var segments = request.url.pathSegments;
     var value = segments.last;
     return value;
   }
 
   /// Take body parameters special for [POST] [PUT] [PATCH] methods.
-  static dynamic _getBodyParameter(Request request, String paramName) {
+  static dynamic _getBodyParameter(Request request, dynamic paramName) {
     var body = request.params;
     var parsedBody = jsonDecode(body.toString());
     return parsedBody[paramName];
   }
-
-
-
 }

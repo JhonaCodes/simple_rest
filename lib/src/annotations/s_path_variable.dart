@@ -15,5 +15,6 @@
 /// Use for define simple data on GET, DELETE request
 class PathVariable {
   final String name;
+
   const PathVariable(this.name);
 }

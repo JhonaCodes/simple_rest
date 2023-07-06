@@ -16,20 +16,13 @@ import 'package:simple_rest/simple_rest.dart';
 import 'controller/school_controller.dart';
 
 void main() {
-
-  Router  app = Router();
+  Router app = Router();
   SServer server = SServer();
 
   server.start(
-    port:  9080,
+    port: 9080,
     isRouterControlActive: false,
     app: app,
-    controllerList: [
-      SchoolController
-    ],
+    controllerList: [SchoolController],
   );
-
-
 }
-
-

@@ -15,5 +15,6 @@
 /// For GET request
 class GetMapping {
   final String path;
+
   const GetMapping({required this.path});
 }

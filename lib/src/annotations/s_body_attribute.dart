@@ -15,5 +15,6 @@
 /// Used for define body data coming on POST, PUT, PATCH request.
 class BodyAttribute {
   final String key;
+
   const BodyAttribute(this.key);
 }

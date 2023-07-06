@@ -18,3 +18,5 @@
 - User Shelft library for routes and endpoints.
 - Cors configuration disponible.
 - More
+## 0.4.1
+- Request param on controller.

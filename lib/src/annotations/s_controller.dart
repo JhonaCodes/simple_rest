@@ -15,5 +15,6 @@
 /// Define principal path for controller
 class RestController {
   final String path;
+
   const RestController(this.path);
 }

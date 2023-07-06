@@ -18,11 +18,10 @@ import 'package:simple_rest/simple_rest.dart';
 
 /// Exception handling using the key-value lookup method in the [exceptions] function.
 /// When the correct error code is found, it invokes a function.
-class HttpExceptionHandler{
-
+class HttpExceptionHandler {
   static String _textError = '';
 
-  static Future<void> exceptions({required HttpRequest response})async {
+  static Future<void> exceptions({required HttpRequest response}) async {
     Map<int, Function> statusResponse = {
       HttpStatus.notFound: () => _logPrintError("Continue"),
       HttpStatus.continue_: () => _logPrint("Continue"),
@@ -100,30 +99,30 @@ class HttpExceptionHandler{
     };
 
     try {
-
       Function? reportLog = statusResponse[response.response.statusCode];
 
       await reportLog!();
       response.response.write('{"response": "$_textError"}');
 
       response.headers.contentType = ContentType.json;
-
     } catch (e) {
       if (e is FormatException || e is HttpException) {
         Logs.error(title: "HTTP Status", msm: "Invalid URL: ${e.toString()}");
         response.response.statusCode = HttpStatus.badRequest;
-        response.response.write('{"response": "The url you are using is incorrect, please check immediately."}');
+        response.response.write(
+            '{"response": "The url you are using is incorrect, please check immediately."}');
       } else {
         response.response.write('{"response": "Unknown error"}');
       }
     }
   }
 
- static void _logPrintError(String error){
-   _textError = error;
+  static void _logPrintError(String error) {
+    _textError = error;
     Logs.failure(title: "HTTP Status", msm: error);
   }
-  static void _logPrint(String error){
+
+  static void _logPrint(String error) {
     _textError = error;
     Logs.info(title: "HTTP Status", msm: error);
   }

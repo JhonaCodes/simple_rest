@@ -26,9 +26,5 @@ export 'src/utils/s_enviroment_data.dart';
 export 'src/utils/s_http_exception_handler.dart';
 export 'src/utils/s_logs.dart';
 
-
 export 'dart:convert';
 export 'package:shelf_router/shelf_router.dart';
-
-
-

@@ -13,7 +13,8 @@
 /// ****************************************************
 
 /// For PUT request
-class PutMapping{
+class PutMapping {
   final String path;
+
   const PutMapping({required this.path});
 }

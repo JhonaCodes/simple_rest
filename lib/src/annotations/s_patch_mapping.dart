@@ -13,7 +13,8 @@
 /// ****************************************************
 
 /// For PATCH request
-class PatchMapping{
+class PatchMapping {
   final String path;
+
   const PatchMapping({required this.path});
 }

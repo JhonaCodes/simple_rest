@@ -14,7 +14,7 @@ To install simple_rest, add the following dependency to your pubspec.yaml file:
 
 ````dart
 dependencies:
-  simple_rest: ^0.4.0
+  simple_rest: ^0.4.1
 ````
 Or just type on console:
 ```dart
@@ -28,7 +28,7 @@ Then run ```dart pub get``` on the command line.
 import 'package:simple_rest/simple_rest.dart';
 ```
 
-## Estructura (Opcional)
+## Estructure (Opcional)
 
 Initially, the example suggests a folder structure to follow some best practices when building the system, but you can structure it however you prefer.
 
@@ -41,8 +41,7 @@ controller
 main.dart
 ```
 
-Initially, you should create your model and its CRUD methods.
-
+How to create Endpoints:
 ```dart
 /// Call the methods we need and use them in our controller functions.
 /// Declare controller using [RestController] + path
@@ -52,12 +51,25 @@ Initially, you should create your model and its CRUD methods.
 /// DeleteMapping
 /// PatchMapping
 /// PutMapping
+/// Request its obligatory parameter for 
 @RestController('/school')
 class SchoolController {
 
+  Request request;
+
+
+  SchoolController(this.request);
+
   @GetMapping(path: '/id/<number>')
   Map<String, dynamic> printSchoolIdWithNumber(@PathVariable('number') dynamic number) {
-    return {'name': 'Name School', 'number': number};
+    var token = request.headers['Authorization'];
+    return {'name': 'Name School', 'number': number, 'token':token};
+  }
+
+  @GetMapping(path: '/')
+  Map<String, dynamic> printSchoolIdWithNumber5() {
+    var token = request.headers['Authorization'];
+    return {'name': 'Name School', 'token':token};
   }
 
   @GetMapping(path: '/apellido/<ape>')
@@ -106,8 +118,6 @@ class SchoolController {
     var dataSchool = jsonDecode(body );
     return dataSchool;
   }
-
-
 
 }
 ```

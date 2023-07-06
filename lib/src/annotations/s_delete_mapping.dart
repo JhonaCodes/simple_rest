@@ -15,5 +15,6 @@
 /// For DELETE request
 class DeleteMapping {
   final String path;
+
   const DeleteMapping({required this.path});
 }
