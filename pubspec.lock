@@ -9,14 +9,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "61.0.0"
-  adaptive_number:
-    dependency: transitive
-    description:
-      name: adaptive_number
-      sha256: "3a567544e9b5c9c803006f51140ad544aedc79604fd4f3f2c1380003f97c1d77"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   analyzer:
     dependency: transitive
     description:
@@ -81,22 +73,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
-  dart_jsonwebtoken:
-    dependency: "direct main"
-    description:
-      name: dart_jsonwebtoken
-      sha256: "65024de1bb1e0c54e5bf7267783c86b60af3e21ccc35d63c96dd10f6ad598496"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.8.1"
-  ed25519_edwards:
-    dependency: transitive
-    description:
-      name: ed25519_edwards
-      sha256: "6ce0112d131327ec6d42beede1e5dfd526069b18ad45dcf654f15074ad9276cd"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.1"
   file:
     dependency: transitive
     description:
@@ -105,14 +81,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
-  fixnum:
-    dependency: transitive
-    description:
-      name: fixnum
-      sha256: "25517a4deb0c03aa0f32fd12db525856438902d9c16536311e76cdc57b31d7d1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -129,6 +97,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  http_methods:
+    dependency: transitive
+    description:
+      name: http_methods
+      sha256: "6bccce8f1ec7b5d701e7921dca35e202d425b57e317ba1a37f2638590e29e566"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   http_multi_server:
     dependency: transitive
     description:
@@ -233,14 +209,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
-  pointycastle:
-    dependency: transitive
-    description:
-      name: pointycastle
-      sha256: "7c1e5f0d23c9016c5bbd8b1473d0d3fb3fc851b876046039509e18e0c7485f2c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.7.3"
   pool:
     dependency: transitive
     description:
@@ -258,13 +226,21 @@ packages:
     source: hosted
     version: "2.1.4"
   shelf:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shelf
       sha256: ad29c505aee705f41a4d8963641f91ac4cee3c8fad5947e033390a7bd8180fa4
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  shelf_cors_headers:
+    dependency: "direct main"
+    description:
+      name: shelf_cors_headers
+      sha256: a127c80f99bbef3474293db67a7608e3a0f1f0fcdb171dad77fa9bd2cd123ae4
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.5"
   shelf_packages_handler:
     dependency: transitive
     description:
@@ -273,6 +249,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  shelf_router:
+    dependency: "direct main"
+    description:
+      name: shelf_router
+      sha256: f5e5d492440a7fb165fe1e2e1a623f31f734d3370900070b2b1e0d0428d59864
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.4"
   shelf_static:
     dependency: transitive
     description:

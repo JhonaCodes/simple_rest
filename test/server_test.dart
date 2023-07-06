@@ -3,12 +3,11 @@ import 'dart:io';
 import 'package:simple_rest/simple_rest.dart';
 import 'package:test/test.dart';
 
-import '../example/controller/user_controller.dart';
 
 Future<void> main() async{
 
   final server = SServer.envConfig();
-  await server.started([UserController.init]);
+ // await server.started([UserController.init]);
 
   final client = HttpClient();
 
@@ -25,18 +24,5 @@ Future<void> main() async{
   });
 
 
-  test("JWT Verificator",(){
-
-    var userJwt = SJwt.generateJWT(
-        customSecureKey: SEnviromentData.jwtSecretKey(key: "MY_CUSTOM_NAME"),
-        jwtUserInfo:
-        {
-          "mail": "JHonatan@gmail.com",
-        }
-    );
-
-    expect(SJwt.verifyUser(token: userJwt)['response'], true);
-
-  });
 
 }

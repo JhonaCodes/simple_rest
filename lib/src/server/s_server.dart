@@ -15,16 +15,10 @@
 
 import 'dart:io';
 
-import 'package:simple_rest/src/controller/s_controller.dart';
-
-import '../router/s_router.dart';
 import '../utils/s_enviroment_data.dart';
 import '../utils/s_logs.dart';
 
-/// This class is responsible for initializing the server and registering the [init] functions of each [Controller] class.
-/// This server takes data from 3 different sources: [envConfig], [customConfig], [defaultConfig].
-/// To use [envConfig], you must create a file in the main root named [.env], notice that it must use the '.' before the name
-/// as shown in the previous example.
+
 class SServer{
 
   InternetAddress? ip;
@@ -54,7 +48,6 @@ class SServer{
     Logs.info(title: "ROUTES", msm: "Initializing Routes");
 
     /// Initialize our singleton so that we can read all the routes that are going to be implemented.
-    var router = SRouter.getInstanceSRouter;
 
     /// Call all the functions that are in the server's init, which are usually [ClassController.init()]
     /// where all the routes will be registered in our singleton that is already initialized.
@@ -68,10 +61,6 @@ class SServer{
       service = await HttpServer.bind(ip, port!);
 
       /// Initialize our server by reading the requests from the clients. They will already have all our services registered.
-      service!.listen((HttpRequest request) {
-        SController.request = request;
-        router.route(request);
-      });
 
       Logs.debug(title: "SERVER STATUS", msm: "Server Started on ${service!.port}");
 

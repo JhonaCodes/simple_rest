@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:shelf/shelf.dart';
+
 /// ****************************************************
 ///                                                    *
 ///               By: JhonaCode                        *
@@ -13,11 +17,21 @@
 /// ****************************************************
 
 
-/// Constants for HTTP methods.
-mixin SHttpMethod{
-  static String get get      => 'GET';
-  static String get post     => 'POST';
-  static String get put      => 'PUT';
-  static String get patch    => 'PATCH';
-  static String get delete   => 'DELETE';
+
+/// This class is used to register permitted routes.
+class SRouterHandler{
+
+  List<String> allowedPaths = [];
+
+  Handler allowedRequestsMiddleware(Handler innerHandler) {
+
+    return (request) async {
+      /// Verify if the route is on the list.
+      if (!allowedPaths.contains(request.url.pathSegments[0])) {
+        return Response(HttpStatus.forbidden, body: 'Access denied');
+      }
+      /// send the request to the next step for the canalization.
+      return await innerHandler(request);
+    };
+  }
 }
