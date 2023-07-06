@@ -135,7 +135,7 @@ class SRouter{
     return arguments;
   }
 
-  /// Take a
+  /// Take a parameter
   static dynamic _getPathParameter(Request request, String paramName) {
     var segments = request.url.pathSegments;
     var value = segments.last;

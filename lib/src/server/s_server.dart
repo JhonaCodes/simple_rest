@@ -12,64 +12,43 @@
 ///                                                    *
 /// ****************************************************
 
+import 'package:shelf/shelf_io.dart' as shelf_io;
+import 'package:shelf_cors_headers/shelf_cors_headers.dart';
+import 'package:shelf_router/shelf_router.dart';
 
+import 'package:simple_rest/src/router/s_router.dart';
+import 'package:simple_rest/src/router/s_router_handler.dart';
+import 'package:shelf/shelf.dart';
 import 'dart:io';
-
-import '../utils/s_enviroment_data.dart';
-import '../utils/s_logs.dart';
-
 
 class SServer{
 
-  InternetAddress? ip;
-  int? port;
 
-  HttpServer? service;
 
-  /// Imports the ENV configurations to start the server.
-  SServer.envConfig(){
-    ip = InternetAddress.tryParse(SEnviromentData.ipServer());
-    port = SEnviromentData.portServer();
-  }
+  void start( {required int port, required bool isRouterControlActive, Object? ip, required Router app, required List<dynamic> controllerList, List<String>? allowRoutersList}){
 
-  /// Uses the user's default settings.
-  SServer.customConfig({required String ipServer, required int portServer}){
-    ip   = InternetAddress.tryParse(ipServer);
-    port = portServer;
-  }
+    /// Scan and register controllers
+    SRouter.scanAndRegisterRoutesController(app, controllerList);
 
-  SServer.defaultConfig(){
-    ip   = InternetAddress.anyIPv4;
-    port = int.parse(Platform.environment['PORT'] ?? '8080');
-  }
+    /// This is Optionally for secure route
+    SRouterHandler routerHandler = SRouterHandler();
+    if(allowRoutersList != null) routerHandler.allowedPaths = allowRoutersList;
 
-  Future<void> started(List<Function> initialization) async {
+    /// Create a Shelf handler from the router
+    final handler = const Pipeline()
+        .addMiddleware(logRequests())
+        .addMiddleware(routerHandler.allowedRequestsMiddleware)  /// Add a midleware personalized
+        .addMiddleware(corsHeaders())
+        .addHandler(app);
 
-    Logs.info(title: "ROUTES", msm: "Initializing Routes");
 
-    /// Initialize our singleton so that we can read all the routes that are going to be implemented.
+    /// Simple way for server handler
+    final handlerSimple = const Pipeline().addMiddleware(logRequests()).addHandler(app);
 
-    /// Call all the functions that are in the server's init, which are usually [ClassController.init()]
-    /// where all the routes will be registered in our singleton that is already initialized.
-    for (var fun in initialization) {
-      Logs.info(title: "SERVICES", msm: "Initializing Controllers");
-      fun();
-    }
+    /// Start the server
+    shelf_io.serve( isRouterControlActive ? handler : handlerSimple, ip ?? InternetAddress.anyIPv4, port).then((server) {
+      print('Server running on ${server.address}:${server.port}');
+    });
 
-    try {
-      /// Instantiate our server with a default IP and port.
-      service = await HttpServer.bind(ip, port!);
-
-      /// Initialize our server by reading the requests from the clients. They will already have all our services registered.
-
-      Logs.debug(title: "SERVER STATUS", msm: "Server Started on ${service!.port}");
-
-    } on SocketException catch (e) {
-      Logs.error(title: "SERVER STATUS", msm: "SocketException occurred: $e");
-    } on Exception catch (e) {
-      Logs.error(title: "SERVER STATUS", msm: "Exception occurred: $e");
-    } catch (e) {
-      Logs.error(title: "SERVER STATUS", msm: "Unknown error occurred: $e");
-    }
   }
 }

@@ -1,7 +1,3 @@
-import 'dart:io';
-
-import 'package:shelf/shelf.dart';
-
 /// ****************************************************
 ///                                                    *
 ///               By: JhonaCode                        *
@@ -16,7 +12,8 @@ import 'package:shelf/shelf.dart';
 ///                                                    *
 /// ****************************************************
 
-
+import 'dart:io';
+import 'package:shelf/shelf.dart';
 
 /// This class is used to register permitted routes.
 class SRouterHandler{

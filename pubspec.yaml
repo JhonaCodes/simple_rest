@@ -1,7 +1,7 @@
 name: simple_rest
 
 description: Get your REST API server up and running in no time with our user-friendly quickstart package, designed for easy initialization in just a few simple steps.
-version: 0.3.6
+version: 0.4.0
 repository: https://github.com/JhonaCodes/simple_rest
 homepage: https://jhonacode.com
 

@@ -12,8 +12,24 @@
 ///                                                    *
 /// ****************************************************
 
-/// For POST request
-class PostMapping {
-  final String path;
-  const PostMapping({required this.path});
+import 'package:simple_rest/simple_rest.dart';
+import 'controller/school_controller.dart';
+
+void main() {
+
+  Router  app = Router();
+  SServer server = SServer();
+
+  server.start(
+    port:  9080,
+    isRouterControlActive: false,
+    app: app,
+    controllerList: [
+      SchoolController
+    ],
+  );
+
+
 }
+
+

@@ -1,11 +1,22 @@
+/// ****************************************************
+///                                                    *
+///               By: JhonaCode                        *
+///               Web:     https://jhonacode.com       *
+///               Email:   jhonacode2020@gmail.com     *
+///               Twitter: @jhonacode                  *
+///               Facebook: @jhonacode                 *
+///               Telegram: @jhonacode                 *
+///               March 2023                           *
+///                                                    *
+///         Licensed under the MIT License             *
+///                                                    *
+/// ****************************************************
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:mime/mime.dart';
-
-
-
 
 /// This class is for deserialization, any request to Map data.
 /// Why, Well [Map] to any instance its easy if you make a name contructor [fromJson]

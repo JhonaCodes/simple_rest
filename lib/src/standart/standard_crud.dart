@@ -1,11 +1,25 @@
-mixin STCrud<T> {
+/// ****************************************************
+///                                                    *
+///               By: JhonaCode                        *
+///               Web:     https://jhonacode.com       *
+///               Email:   jhonacode2020@gmail.com     *
+///               Twitter: @jhonacode                  *
+///               Facebook: @jhonacode                 *
+///               Telegram: @jhonacode                 *
+///               March 2023                           *
+///                                                    *
+///         Licensed under the MIT License             *
+///                                                    *
+/// ****************************************************
 
-  Future<List<Object>> getAll();
-  Future<Object> getById(Object id);
+abstract class STCrud<T> {
 
-  Future<Object> deleteById(Object id);
-  Future<Object> save(T entity);
-  Future<Object> update(Object entity);
+  dynamic getAll();
+  dynamic getById<P1>(P1 id);
+  dynamic deleteById<P2>(P2 id);
+  dynamic save(T entity);
+  dynamic updateAllData<P3>(P3 entity);
+  dynamic updateSpecificData<P3>(P3 entity);
 
 }
 
