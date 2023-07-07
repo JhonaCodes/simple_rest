@@ -14,7 +14,7 @@ To install simple_rest, add the following dependency to your pubspec.yaml file:
 
 ````dart
 dependencies:
-  simple_rest: ^0.4.1
+  simple_rest: ^0.4.2
 ````
 Or just type on console:
 ```dart
@@ -122,6 +122,35 @@ class SchoolController {
 }
 ```
 
+### Envoroment Data
+
+Create a ```.env``` file on main path on your project, then use a personalized class for calling data.
+
+```dart
+class Env{
+
+  static final SEnviromentData _sEnviromentData = SEnviromentData(path: '.env');
+
+  static int get port => int.parse( _sEnviromentData.eniValue(key: 'PORT_SERVER') );
+  static String get url => _sEnviromentData.eniValue(key: 'URL_API');
+  static String get apiKey => _sEnviromentData.eniValue(key: 'API_KEY');
+
+}
+```
+On ```.env``` file your server data, and use those key for calling data from class Env.
+```yaml
+IP_SERVER=127.0.0.1
+PORT_SERVER=8090
+JWT_LOCAL_KEY=0283hr9h39238r
+MY_CUSTOM_NAME=0283hr9h39238r
+URL_API=23oifh23iuf
+API_KEY=2oihf23ibf
+API_AUTH=poi2jf932ifo
+USER_DB=2o3hfi23iufb
+PASS_DB=iwufbweif
+URL_DB=wouifh2iufb
+```
+
 For initialize our server as follows and Just register the controllers on controllerList.
 
 ```dart
@@ -131,7 +160,7 @@ void main() {
   SServer server = SServer();
 
   server.start(
-    port:  8080,
+    port:  Env.port,
     isRouterControlActive: false,
     app: app,
     controllerList: [

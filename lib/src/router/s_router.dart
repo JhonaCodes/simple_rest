@@ -31,7 +31,6 @@ class SRouter {
 
       var methods =
           controllerMirror.instanceMembers.values.whereType<MethodMirror>();
-
       for (var method in methods) {
         for (var metadata in method.metadata) {
           switch (metadata.reflectee.runtimeType) {

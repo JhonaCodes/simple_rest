@@ -12,6 +12,7 @@
 ///                                                    *
 /// ****************************************************
 
+
 import 'dart:io';
 
 import 'package:simple_rest/simple_rest.dart';
@@ -19,25 +20,29 @@ import 'package:simple_rest/simple_rest.dart';
 /// This class is responsible for reading data from the environment file.
 /// We can define our .env file path or use the default one in the library.
 
-class SEnviromentData {
+class SEnviromentData{
+
   /// Just define your own path for .env file
   String path = '';
 
+  SEnviromentData({required this.path});
   /// call env value for use on your application
-  dynamic eniValue({required String key}) {
+  dynamic eniValue({required String key}){
     return _loadEnvFile[key];
   }
 
   /// hidden function for return env map
   Map<String, String> get _loadEnvFile {
+
     String filePath = "../.env";
     final envMap = <String, String>{};
-    try {
-      File env = File(path.isEmpty ? filePath : path);
+    try{
 
-      if (!env.existsSync()) {
+      File env = File( path.isEmpty ? filePath : path);
+
+      if( !env.existsSync() ){
         filePath = ".env";
-        env = File(path.isEmpty ? filePath : path);
+        env = File( path.isEmpty ? filePath : path);
       }
 
       String envContents = env.readAsStringSync();
@@ -50,10 +55,13 @@ class SEnviromentData {
           envMap[keyValue[0].trim()] = keyValue[1].trim();
         }
       }
-    } catch (e) {
+
+    }catch(e){
       Logs.error(title: "NO FILE", msm: "🔥 Error to calling file");
     }
 
+
     return envMap;
   }
+
 }

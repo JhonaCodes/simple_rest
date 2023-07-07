@@ -20,3 +20,8 @@
 - More
 ## 0.4.1
 - Request param on controller.
+
+## 0.4.2
+- Update enviroment data calling
+- Refactor exporting dats
+- More minor bugs.

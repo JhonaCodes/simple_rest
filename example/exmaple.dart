@@ -25,4 +25,5 @@ void main() {
     app: app,
     controllerList: [SchoolController],
   );
+
 }
