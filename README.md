@@ -14,7 +14,7 @@ To install simple_rest, add the following dependency to your pubspec.yaml file:
 
 ````dart
 dependencies:
-  simple_rest: ^0.4.2
+  simple_rest: ^0.4.3
 ````
 Or just type on console:
 ```dart

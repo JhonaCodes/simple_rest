@@ -39,12 +39,12 @@ class SRouter {
               var methodPath = methodMetadata.path;
               var methodName = method.simpleName;
               var fullPath = '${controllerMetadata.path}$methodPath';
-              app.get(fullPath, (Request request) {
+              app.get(fullPath, (Request request) async{
                 var instanceMirror =
                     controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = _extractArguments(method, request);
                 var result = instanceMirror.invoke(methodName, arguments);
-                var jsonResponse = jsonEncode(result.reflectee);
+                var jsonResponse = jsonEncode(await result.reflectee);
                 return Response.ok(jsonResponse, headers: header);
               });
               break;
@@ -59,7 +59,7 @@ class SRouter {
                     controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = [bodyData];
                 var result = instanceMirror.invoke(methodName, arguments);
-                var jsonResponse = jsonEncode(result.reflectee);
+                var jsonResponse = jsonEncode(await result.reflectee);
                 return Response.ok(jsonResponse, headers: header);
               });
               break;
@@ -74,7 +74,7 @@ class SRouter {
                     controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = [bodyData];
                 var result = instanceMirror.invoke(methodName, arguments);
-                var jsonResponse = jsonEncode(result.reflectee);
+                var jsonResponse = jsonEncode(await result.reflectee);
                 return Response.ok(jsonResponse, headers: header);
               });
               break;
@@ -89,7 +89,7 @@ class SRouter {
                     controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = [bodyData];
                 var result = instanceMirror.invoke(methodName, arguments);
-                var jsonResponse = jsonEncode(result.reflectee);
+                var jsonResponse = jsonEncode(await result.reflectee);
                 return Response.ok(jsonResponse, headers: header);
               });
               break;
@@ -98,12 +98,12 @@ class SRouter {
               var methodPath = methodMetadata.path;
               var methodName = method.simpleName;
               var fullPath = '${controllerMetadata.path}$methodPath';
-              app.delete(fullPath, (Request request) {
+              app.delete(fullPath, (Request request) async{
                 var instanceMirror =
                     controllerMirror.newInstance(const Symbol(''), [request]);
                 var arguments = _extractArguments(method, request);
                 var result = instanceMirror.invoke(methodName, arguments);
-                var jsonResponse = jsonEncode(result.reflectee);
+                var jsonResponse = jsonEncode(await result.reflectee);
                 return Response.ok(jsonResponse, headers: header);
               });
               break;

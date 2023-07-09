@@ -25,3 +25,6 @@
 - Update enviroment data calling
 - Refactor exporting dats
 - More minor bugs.
+
+## 0.4.3
+- Await response
